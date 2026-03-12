@@ -72,7 +72,7 @@ The first version intentionally stayed small:
 - a Harmony patch hooks into `NMapScreen._Ready()`
 - a `MapBoardOverlay` control is added to the map container
 - the board is drawn procedurally in code
-- dragging is enabled with `Ctrl + Left Mouse Drag`
+- an experimental draggable version was tested first
 
 This made the mod easy to change later:
 
@@ -80,6 +80,12 @@ This made the mod easy to change later:
 - position can be moved
 - 15x15 can become 19x19
 - an image-based board can still be added later if needed
+
+The current repo takes the calmer version of that idea:
+
+- the board is fixed in a tuned position
+- the overlay is styled to sit closer to the map background
+- the game's normal map drawing remains the primary interaction
 
 ## Act 6: From private experiment to public artifact
 

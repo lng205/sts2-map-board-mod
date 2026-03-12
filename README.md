@@ -2,7 +2,7 @@
 
 An agent-native `Slay the Spire 2` mod, designed in conversation and shipped as a tiny co-op quality-of-life hack.
 
-The mod adds a draggable board overlay to the map screen so players can use the game's built-in map drawing tools for quick gomoku or go-style sketch games while waiting on teammates.
+The mod adds a fixed board overlay to the map screen so players can use the game's built-in map drawing tools for quick gomoku or go-style sketch games while waiting on teammates.
 
 ## Why this repo exists
 
@@ -22,7 +22,7 @@ Read the talk here: [docs/THE_TALK.md](docs/THE_TALK.md)
 
 - Injects a 15x15 board into the map scene at runtime.
 - Keeps the board behind the native map drawing layer, so the game's draw and erase tools still work on top.
-- Lets players reposition the board with `Ctrl + Left Mouse Drag`.
+- Uses a fixed placement tuned for the map layout instead of a movable overlay.
 - Avoids asset-pipeline complexity by drawing the board in code instead of relying on a static image.
 
 ## Agent-built workflow
@@ -30,7 +30,7 @@ Read the talk here: [docs/THE_TALK.md](docs/THE_TALK.md)
 This repo came together in one collaborative loop:
 
 1. The idea started as "put a gomoku or go board in the blank map space."
-2. The implementation was narrowed to "a lightweight draggable overlay instead of a full minigame."
+2. The implementation was narrowed to "a lightweight board overlay instead of a full minigame."
 3. The modding guide was recovered and matched to the actual local game install.
 4. The map screen classes in `sts2.dll` were inspected to find a clean injection point.
 5. The environment was installed: `.NET 9 SDK`, `Godot 4.5.1 Mono`, and `GitHub CLI`.
@@ -57,4 +57,4 @@ On success, the build copies the DLL and exports the Godot pack into:
 
 - `local.props` is ignored because it contains machine-specific paths.
 - `godot/project.godot`, `godot/mod_manifest.json`, and `godot/export_presets.cfg` are generated during build.
-- The first release is intentionally small and readable so the "conversation to code" workflow is easy to inspect.
+- The current version intentionally keeps the board fixed and understated so it feels closer to part of the map background than a floating tool window.
