@@ -1,5 +1,9 @@
 # STS2 Map Board Mod
 
+中文说明: [README.zh-CN.md](README.zh-CN.md)
+English narrative: [docs/THE_TALK.md](docs/THE_TALK.md)
+中文过程记录: [docs/THE_TALK.zh-CN.md](docs/THE_TALK.zh-CN.md)
+
 An agent-native `Slay the Spire 2` mod, designed in conversation and shipped as a tiny co-op quality-of-life hack.
 
 The mod adds a fixed board overlay to the map screen so players can use the game's built-in map drawing tools for quick gomoku or go-style sketch games while waiting on teammates.
@@ -17,12 +21,13 @@ It is also a small example of a different way to build software:
 The build story matters here, so the repo includes both the code and the conversation-shaped project narrative.
 
 Read the talk here: [docs/THE_TALK.md](docs/THE_TALK.md)
+Chinese version: [docs/THE_TALK.zh-CN.md](docs/THE_TALK.zh-CN.md)
 
 ## What the mod does
 
 - Injects a 15x15 board into the map scene at runtime.
 - Keeps the board behind the native map drawing layer, so the game's draw and erase tools still work on top.
-- Uses a fixed placement tuned for the map layout instead of a movable overlay.
+- Uses a fixed placement tuned for the upper-left area of the map instead of a movable overlay.
 - Avoids asset-pipeline complexity by drawing the board in code instead of relying on a static image.
 
 ## Agent-built workflow

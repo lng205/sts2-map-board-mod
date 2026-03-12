@@ -18,8 +18,8 @@ public partial class MapBoardOverlay : Control
     private const float BorderWidth = 2f;
     private const float GridWidth = 1.5f;
     private const float StarPointRadius = 3.5f;
-    private const float DefaultRightMargin = 92f;
-    private const float DefaultBottomMargin = 144f;
+    private const float DefaultLeftMargin = 92f;
+    private const float DefaultTopMargin = 156f;
     private const float MinMargin = 24f;
 
     private Vector2 _lastViewportSize;
@@ -75,8 +75,8 @@ public partial class MapBoardOverlay : Control
         var maxX = Mathf.Max(MinMargin, viewportSize.X - Size.X - MinMargin);
         var maxY = Mathf.Max(MinMargin, viewportSize.Y - Size.Y - MinMargin);
         var desiredScreenPosition = new Vector2(
-            Mathf.Clamp(viewportSize.X - Size.X - DefaultRightMargin, MinMargin, maxX),
-            Mathf.Clamp(viewportSize.Y - Size.Y - DefaultBottomMargin, MinMargin, maxY));
+            Mathf.Clamp(DefaultLeftMargin, MinMargin, maxX),
+            Mathf.Clamp(DefaultTopMargin, MinMargin, maxY));
 
         var inverseCanvasTransform = parent.GetGlobalTransformWithCanvas().Inverse();
 
