@@ -1,0 +1,11 @@
+<Project>
+  <PropertyGroup>
+    <STS2GamePath>C:\Program Files (x86)\Steam\steamapps\common\Slay the Spire 2</STS2GamePath>
+    <GodotExePath>C:\Path\To\Godot_v4.5.1-stable_mono_win64.exe</GodotExePath>
+
+    <ModName>Sts2MapBoardMod</ModName>
+    <ModDisplayName>STS2 Map Board Mod</ModDisplayName>
+    <ModAuthor>Your Name</ModAuthor>
+    <ModVersion>0.1.0</ModVersion>
+  </PropertyGroup>
+</Project>
