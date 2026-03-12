@@ -1,6 +1,4 @@
-using Godot;
 using HarmonyLib;
-using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Nodes.Screens.Map;
 using Sts2MapBoardMod.Ui;
 
