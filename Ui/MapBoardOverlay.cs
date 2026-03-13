@@ -28,7 +28,6 @@ public partial class MapBoardOverlay : Control
     {
         PrepareForInjection();
         CallDeferred(nameof(RefreshDefaultPosition));
-        QueueRedraw();
     }
 
     public override void _Process(double delta)
@@ -43,20 +42,11 @@ public partial class MapBoardOverlay : Control
     public void PrepareForInjection()
     {
         SetAnchorsPreset(LayoutPreset.TopLeft);
-        AnchorLeft = 0f;
-        AnchorTop = 0f;
-        AnchorRight = 0f;
-        AnchorBottom = 0f;
-        TopLevel = false;
         Visible = true;
         Size = BoardPixelSize;
         CustomMinimumSize = BoardPixelSize;
         MouseFilter = MouseFilterEnum.Ignore;
-        TooltipText = string.Empty;
-        ZIndex = 0;
-        Scale = Vector2.One;
         EnsureVisuals();
-        QueueRedraw();
     }
 
     public void RefreshDefaultPosition()
@@ -85,11 +75,6 @@ public partial class MapBoardOverlay : Control
         _lastViewportSize = viewportSize;
     }
 
-    public override void _Draw()
-    {
-        // Visuals are built from child ColorRects for more reliable rendering in-game.
-    }
-
     private void EnsureVisuals()
     {
         var visualRoot = GetNodeOrNull<Control>(VisualRootName);
@@ -108,19 +93,14 @@ public partial class MapBoardOverlay : Control
         visualRoot.Size = BoardPixelSize;
         visualRoot.CustomMinimumSize = BoardPixelSize;
 
-        RebuildVisualChildren(visualRoot);
+        if (visualRoot.GetChildCount() == 0)
+        {
+            BuildVisualChildren(visualRoot);
+        }
     }
 
-    private void RebuildVisualChildren(Control visualRoot)
+    private void BuildVisualChildren(Control visualRoot)
     {
-        foreach (var child in visualRoot.GetChildren())
-        {
-            if (child is Node node)
-            {
-                node.QueueFree();
-            }
-        }
-
         AddRect(visualRoot, "Background", Vector2.Zero, BoardPixelSize, BoardColor);
         AddRect(visualRoot, "BorderTop", Vector2.Zero, new Vector2(BoardPixelSize.X, BorderWidth), BorderColor);
         AddRect(visualRoot, "BorderBottom", new Vector2(0f, BoardPixelSize.Y - BorderWidth), new Vector2(BoardPixelSize.X, BorderWidth), BorderColor);

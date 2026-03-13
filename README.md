@@ -1,7 +1,6 @@
 # STS2 Map Board Mod
 
 中文说明: [README.zh-CN.md](README.zh-CN.md)
-Docs index: [docs/README.md](docs/README.md)
 English narrative: [docs/THE_TALK.md](docs/THE_TALK.md)
 中文过程记录: [docs/THE_TALK.zh-CN.md](docs/THE_TALK.zh-CN.md)
 
