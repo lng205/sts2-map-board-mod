@@ -4,51 +4,30 @@
 English narrative: [docs/THE_TALK.md](docs/THE_TALK.md)
 中文过程记录: [docs/THE_TALK.zh-CN.md](docs/THE_TALK.zh-CN.md)
 
-An agent-native `Slay the Spire 2` mod, designed in conversation and shipped as a tiny co-op quality-of-life hack.
+An agent-native `Slay the Spire 2` mod, designed in conversation and shipped as a small co-op quality-of-life hack.
 
-The mod adds a fixed board overlay to the map screen so players can use the game's built-in map drawing tools for quick gomoku or go-style sketch games while waiting on teammates.
-
-## Why this repo exists
-
-This project is not just "a mod repo."
-
-It is also a small example of a different way to build software:
-
-- start from a vague game-side idea
-- refine it through dialogue
-- let an agent inspect the target game, set up the toolchain, scaffold the project, implement a first pass, and publish the repo
-
-The build story matters here, so the repo includes both the code and the conversation-shaped project narrative.
-
-Read the talk here: [docs/THE_TALK.md](docs/THE_TALK.md)
-Chinese version: [docs/THE_TALK.zh-CN.md](docs/THE_TALK.zh-CN.md)
+The mod adds a fixed 15x15 board overlay to the map screen so players can use the game's built-in map drawing tools for quick gomoku or go-style sketch games while waiting on teammates.
 
 ## What the mod does
 
 - Injects a 15x15 board into the map scene at runtime.
 - Keeps the board behind the native map drawing layer, so the game's draw and erase tools still work on top.
-- Uses a fixed placement tuned for the upper-left area of the map instead of a movable overlay.
-- Avoids asset-pipeline complexity by drawing the board in code instead of relying on a static image.
+- Uses a fixed placement in the upper-left area of the map instead of a movable overlay.
+- Draws the board in code, so the mod does not depend on extra image assets.
 
-## Agent-built workflow
+## Install
 
-This repo came together in one collaborative loop:
+1. Download the latest release zip from GitHub Releases.
+2. Extract the `Sts2MapBoardMod` folder from the archive.
+3. Copy that folder into `[Slay the Spire 2]\\mods\\`.
+4. Start the game and choose `Load Mods`.
+5. Open the map screen. The board appears in the upper-left area.
 
-1. The idea started as "put a gomoku or go board in the blank map space."
-2. The implementation was narrowed to "a lightweight board overlay instead of a full minigame."
-3. The modding guide was recovered and matched to the actual local game install.
-4. The map screen classes in `sts2.dll` were inspected to find a clean injection point.
-5. The environment was installed: `.NET 9 SDK`, `Godot 4.5.1 Mono`, and `GitHub CLI`.
-6. The project was scaffolded, built, exported, committed, and pushed to GitHub.
+To uninstall, delete:
 
-## Tech notes
+`[Slay the Spire 2]\\mods\\Sts2MapBoardMod\\`
 
-- Runtime patching: `Harmony`
-- Game integration target: `MegaCrit.Sts2.Core.Nodes.Screens.Map.NMapScreen`
-- Overlay UI: `Godot Control`
-- Build output: DLL plus exported `.pck`
-
-## Local setup
+## Build locally
 
 1. Copy `local.props.example` to `local.props`.
 2. Update `STS2GamePath` and `GodotExePath` in `local.props`.
@@ -58,8 +37,28 @@ On success, the build copies the DLL and exports the Godot pack into:
 
 `[Slay the Spire 2]\\mods\\Sts2MapBoardMod\\`
 
+## Tech notes
+
+- Runtime patching: `Harmony`
+- Game integration target: `MegaCrit.Sts2.Core.Nodes.Screens.Map.NMapScreen`
+- Overlay UI: `Godot Control`
+- Build output: DLL plus exported `.pck`
+
+## Why this repo exists
+
+This repo is both a mod project and a record of an agent-centered build workflow:
+
+1. Start from a vague gameplay idea.
+2. Refine the scope through dialogue.
+3. Inspect the game, set up the toolchain, scaffold the project, implement the mod, and publish it.
+
+The narrative part is intentional. If you want the full build story, read:
+
+- [docs/THE_TALK.md](docs/THE_TALK.md)
+- [docs/THE_TALK.zh-CN.md](docs/THE_TALK.zh-CN.md)
+
 ## Repo notes
 
 - `local.props` is ignored because it contains machine-specific paths.
 - `godot/project.godot`, `godot/mod_manifest.json`, and `godot/export_presets.cfg` are generated during build.
-- The current version intentionally keeps the board fixed and understated so it feels closer to part of the map background than a floating tool window.
+- The current version keeps the board fixed and understated so it feels closer to part of the map background than a floating tool window.
